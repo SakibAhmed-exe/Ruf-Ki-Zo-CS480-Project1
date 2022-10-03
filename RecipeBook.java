@@ -1,11 +1,45 @@
+package Ruf_Ki_Zo.RecipeBook;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.Reader;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
+import org.apache.log4j.BasicConfigurator;
+import org.eclipse.jgit.api.Git;
+import org.eclipse.jgit.api.errors.GitAPIException;
+import org.eclipse.jgit.api.errors.InvalidRemoteException;
+import org.eclipse.jgit.api.errors.TransportException;
+import org.eclipse.jgit.lib.Repository;
+import org.eclipse.jgit.revwalk.RevCommit;
+import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
+import org.eclipse.jgit.transport.UsernamePasswordCredentialsProvider;
+import org.eclipse.jgit.util.FileUtils;
 
 public class RecipeBook {
 	static ArrayList<Recipes> recipe = new ArrayList<Recipes>();
 
 	public static void main(String[] args) {
 		mainMenu();
+		
+		BasicConfigurator.configure();
+		
+		//writeJsonRecipe("pasta", "its very good", "tomato,spaghetti,basil", "boil water,add sauce,enjoy!");
+		
+		//viewJsonRecipes();
 	}
 
 	private static void mainMenu() {
@@ -248,5 +282,65 @@ public class RecipeBook {
 		}
 
 	}
+	
+	private static void writeJsonRecipe(String name, String description, String ingredients, String instructions) throws Exception {
+		JSONObject recipe = new JSONObject();
+		recipe.put("name", name);
+		recipe.put("description", description);
+		
+		JSONArray ingredientsArray = new JSONArray();
+		String[] ingredientsFilter = ingredients.split(",");
+		for(String ingredient : ingredientsFilter) {
+			ingredientsArray.add(ingredient);
+		}
+		recipe.put("ingredients", ingredientsArray);
+		
+		JSONArray instructionsArray = new JSONArray();
+		String[] instructionsFilter = instructions.split(",");
+		for(int i = 0; i < instructionsFilter.length; i++) {
+			instructionsArray.add("Step " + (i+1) + ": " + instructionsFilter[i]);
+		}
+		recipe.put("instructions", instructionsArray);	
+		
+		try (FileWriter file = new FileWriter("RecipeBook")) {
+            		file.write(recipe.toJSONString());
+        	} catch (IOException e) {
+            	e.printStackTrace();
+        	}
+	}
+	
+	private static void viewJsonRecipes() throws IOException, ParseException {
+		JSONParser parser = new JSONParser();
+		try (Reader reader = new FileReader("RecipeBook")) {
 
+		    JSONObject recipe = (JSONObject) parser.parse(reader);
+
+		    String name = (String) recipe.get("name");
+		    System.out.println("Name: " + name);
+		    System.out.println("");
+
+		    String description = (String) recipe.get("description");
+		    System.out.println("Description: " + description);
+		    System.out.println("");
+
+		    JSONArray ingredients = (JSONArray) recipe.get("ingredients");
+		    Iterator<String> iterator = ingredients.iterator();
+		    System.out.println("Ingredients:");
+		    while (iterator.hasNext()) {
+			System.out.println(iterator.next());
+		    }
+		    System.out.println("");
+
+		    JSONArray instructions = (JSONArray) recipe.get("instructions");
+		    Iterator<String> iteratorTwo = instructions.iterator();
+		    System.out.println("Instructions:");
+		    while (iteratorTwo.hasNext()) {
+			System.out.println(iteratorTwo.next());
+		    }
+		} catch (IOException e) {
+		    e.printStackTrace();
+		} catch (ParseException e) {
+		    e.printStackTrace();
+		}
+	}
 }
