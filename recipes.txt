@@ -1,5 +1,5 @@
 Name: Shrimp Alfredo Pasta
-Description: This shrimp Alfredo pasta recipe is the perfect fast weeknight dinner! Tender shrimp and fettuccine pasta are smothered in an amazing creamy garlic sauce.
+Description: This shrimp Alfredo pasta recipe is the perfect fast weeknight dinner! 
 Ingredients: Fettuccine pasta; Shrimp; Butter; Cream cheese; Heavy cream; Chicken broth; Garlic; Parmesan cheese
 Instructions:
 1. Fill a large pot with water, add salt and wait for it to boil. Add the dried pasta. Stir until the water returns to a boil. Have it ready on the side. 
@@ -10,7 +10,7 @@ Instructions:
 6. Stir well together and add any seasoning, if you wish. Serve immediately. 
 
 Name: Sauteed Spinach
-Description: This spinach recipe is one of the best ways to cook spinach, for a nutritious and delicious side in just minutes. 
+Description: This spinach recipe is one of the best ways to cook spinach.
 Ingredients: Spinach; Extra virgin olive oil; Sliced garlic; Salt 
 Instructions: 
 1. Clean and prep the spinach. Put the spinach in a salad spinner to remove any excess moisture; 
@@ -19,7 +19,7 @@ Instructions:
 4. Remove from heat and drain the excess liquid. Add a little more olive oil, if you wish. Then, sprinkle with salt to taste. Serve immediately. 
 
 Name: Prosciutto And Melon
-Description: With only three ingredients and no cooking, this prosciutto and melon appetizer is one of the easiest, amazingly delicious summer dish!
+Description: This appetizer is one of the easiest, amazingly delicious summer dish!
 Ingredients: One cantaloupe; Prosciutto (Italian dry-cured ham); Balsamic glaze or quality honey for drizzling; Optional fresh herb garnish
 Instructions: 
 1. Peel the melon, cut in half lengthwise, remove seeds, and slice it; 

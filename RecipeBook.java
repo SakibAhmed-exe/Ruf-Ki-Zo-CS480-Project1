@@ -29,17 +29,30 @@ import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
 import org.eclipse.jgit.transport.UsernamePasswordCredentialsProvider;
 import org.eclipse.jgit.util.FileUtils;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 public class RecipeBook {
 	
 	static JSONArray book = new JSONArray();
 	static ArrayList<Recipes> recipe = new ArrayList<Recipes>();
 
 	public static void main(String[] args) throws Exception {
-		mainMenu();
 		
 		BasicConfigurator.configure();
+
+		ObjectMapper mapper = new ObjectMapper();
+    	try {
+        	File jsonInputFile = new File("recipes.txt");
+        	Recipes r = mapper.readValue(jsonInputFile, Recipes.class);
+        	System.out.println(r);
+		} 
+		catch (IOException e) {
+        	e.printStackTrace();
+   		}	
 		
-		//viewJsonRecipes();
+		viewJsonRecipes();
+
+		mainMenu();
 	}
 	
 	private static void mainMenu() throws Exception {
@@ -98,7 +111,7 @@ public class RecipeBook {
 		name = s.nextLine();
 		System.out.print("Description: ");
 		description = s.nextLine();
-		System.out.print("Ingredients ");
+		System.out.print("Ingredients: ");
 		ingredientList = s.nextLine();
 		System.out.print("Instructions: ");
 		instructions = s.nextLine();
