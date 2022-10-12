@@ -29,8 +29,6 @@ import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
 import org.eclipse.jgit.transport.UsernamePasswordCredentialsProvider;
 import org.eclipse.jgit.util.FileUtils;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 public class RecipeBook {
 	
 	static JSONArray book = new JSONArray();
@@ -40,17 +38,31 @@ public class RecipeBook {
 		
 		BasicConfigurator.configure();
 
-		ObjectMapper mapper = new ObjectMapper();
-    	try {
-        	File jsonInputFile = new File("recipes.txt");
-        	Recipes r = mapper.readValue(jsonInputFile, Recipes.class);
-        	System.out.println(r);
-		} 
-		catch (IOException e) {
-        	e.printStackTrace();
-   		}	
-		
-		viewJsonRecipes();
+		String name1 = "Shrimp Alfredo Pasta";
+    	String des1 = "This shrimp Alfredo pasta recipe is the perfect fast weeknight dinner!";
+    	String ing1 = "Fettuccine pasta; Shrimp, Butter, Cream cheese, Heavy cream, Chicken broth, Garlic, Parmesan cheese";
+    	String ins1 = "1. Fill a large pot with water, add salt and wait for it to boil. Add the dried pasta. Stir until the water returns to a boil. "
+    			+ "Have it ready on the side; 2. Add the butter, cream cheese, heavy cream, chicken broth, and garlic to a skillet over medium heat. "
+    			+ "Cook it for 5 minutes; 3. Stir in the parmesan cheese and let it bubble for about a minute; 4. Add the shrimp and cook for 5-6 minutes;"
+    			+ "5. Season to taste and toss with the pasta, 6. Stir well together and add any seasoning, if you wish. Serve immediately";
+    	
+    	String name2 = "Sauteed Spinach";
+    	String des2 = "This spinach recipe is one of the best ways to cook spinach.";
+    	String ing2 = "Spinach, Extra virgin olive oil, Sliced garlic, Salt";
+    	String ins2 = "1. Clean and prep the spinach; 2. Heat 2 tablespoons olive oil in a large skillet on medium high heat. "
+    			+ "Add the garlic and saute for about 30 seconds; 3. Add the spinach to the pan and cook. Cover the pan and cook for 1 minute. "
+    			+ "Uncover and turn the spinach over again. Repeat; 4. Remove from heat and drain the excess liquid. "
+    			+ "Add a little more olive oil, if you wish. Then, sprinkle with salt to taste. Serve immediately.";
+    	
+    	String name3 = "Prosciutto And Melon";
+    	String des3 = "This appetizer is one of the easiest, amazingly delicious summer dish!";
+    	String ing3 = "One cantaloupe, Prosciutto (Italian dry-cured ham), Balsamic glaze or quality honey for drizzling, Optional fresh herb garnish";
+    	String ins3 = "1. Peel the melon, cut in half lengthwise, remove seeds, and slice it; 2. Wrap each piece of cantaloupe with a slice of prosciutto;"
+    			+ "3. Add Balsamic glaze or honey for drizzling on each slice; 4. Optional: add fresh herb garnish or basil; 5. Arrange on a platter and serve cold";
+
+    	writeJsonRecipe(name1, des1, ing1, ins1 );
+    	writeJsonRecipe(name2, des2, ing2, ins2);
+    	writeJsonRecipe(name3, des3, ing3, ins3);
 
 		mainMenu();
 	}
@@ -314,7 +326,7 @@ public class RecipeBook {
 		recipe.put("ingredients", ingredientsArray);
 		
 		JSONArray instructionsArray = new JSONArray();
-		String[] instructionsFilter = instructions.split(",");
+		String[] instructionsFilter = instructions.split(";");
 		for(int i = 0; i < instructionsFilter.length; i++) {
 			instructionsArray.add("Step " + (i+1) + ": " + instructionsFilter[i]);
 		}
