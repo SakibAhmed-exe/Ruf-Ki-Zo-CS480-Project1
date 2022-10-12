@@ -38,28 +38,35 @@ public class RecipeBook {
 		
 		BasicConfigurator.configure();
 
+		//have 3 pre-created recipes added to json file
 		String name1 = "Shrimp Alfredo Pasta";
     	String des1 = "This shrimp Alfredo pasta recipe is the perfect fast weeknight dinner!";
-    	String ing1 = "Fettuccine pasta; Shrimp, Butter, Cream cheese, Heavy cream, Chicken broth, Garlic, Parmesan cheese";
-    	String ins1 = "1. Fill a large pot with water, add salt and wait for it to boil. Add the dried pasta. Stir until the water returns to a boil. "
-    			+ "Have it ready on the side; 2. Add the butter, cream cheese, heavy cream, chicken broth, and garlic to a skillet over medium heat. "
-    			+ "Cook it for 5 minutes; 3. Stir in the parmesan cheese and let it bubble for about a minute; 4. Add the shrimp and cook for 5-6 minutes;"
-    			+ "5. Season to taste and toss with the pasta, 6. Stir well together and add any seasoning, if you wish. Serve immediately";
+    	String ing1 = "Fettuccine pasta, Shrimp, Butter, Cream cheese, Heavy cream, Chicken broth, Garlic, Parmesan cheese";
+    	String ins1 = "Fill a large pot with water, add salt and wait for it to boil. Add the dried pasta. Stir until the water returns to a boil. "
+    			+ "Have it ready on the side; Add the butter, cream cheese, heavy cream, chicken broth, and garlic to a skillet over medium heat. "
+    			+ "Cook it for 5 minutes; Stir in the parmesan cheese and let it bubble for about a minute; Add the shrimp and cook for 5-6 minutes;"
+    			+ "Season to taste and toss with the pasta, Stir well together and add any seasoning, if you wish. Serve immediately";
     	
     	String name2 = "Sauteed Spinach";
     	String des2 = "This spinach recipe is one of the best ways to cook spinach.";
     	String ing2 = "Spinach, Extra virgin olive oil, Sliced garlic, Salt";
-    	String ins2 = "1. Clean and prep the spinach; 2. Heat 2 tablespoons olive oil in a large skillet on medium high heat. "
-    			+ "Add the garlic and saute for about 30 seconds; 3. Add the spinach to the pan and cook. Cover the pan and cook for 1 minute. "
-    			+ "Uncover and turn the spinach over again. Repeat; 4. Remove from heat and drain the excess liquid. "
+    	String ins2 = "Clean and prep the spinach; Heat 2 tablespoons olive oil in a large skillet on medium high heat. "
+    			+ "Add the garlic and saute for about 30 seconds; Add the spinach to the pan and cook. Cover the pan and cook for 1 minute. "
+    			+ "Uncover and turn the spinach over again. Repeat; Remove from heat and drain the excess liquid. "
     			+ "Add a little more olive oil, if you wish. Then, sprinkle with salt to taste. Serve immediately.";
     	
     	String name3 = "Prosciutto And Melon";
     	String des3 = "This appetizer is one of the easiest, amazingly delicious summer dish!";
     	String ing3 = "One cantaloupe, Prosciutto (Italian dry-cured ham), Balsamic glaze or quality honey for drizzling, Optional fresh herb garnish";
-    	String ins3 = "1. Peel the melon, cut in half lengthwise, remove seeds, and slice it; 2. Wrap each piece of cantaloupe with a slice of prosciutto;"
-    			+ "3. Add Balsamic glaze or honey for drizzling on each slice; 4. Optional: add fresh herb garnish or basil; 5. Arrange on a platter and serve cold";
+    	String ins3 = "Peel the melon, cut in half lengthwise, remove seeds, and slice it; Wrap each piece of cantaloupe with a slice of prosciutto;"
+    			+ "Add Balsamic glaze or honey for drizzling on each slice; Optional: add fresh herb garnish or basil; 5. Arrange on a platter and serve cold";
 
+		Recipes r1 = new Recipes(name1.toLowerCase(),des1,ing1,ins1);
+		Recipes r2 = new Recipes (name2.toLowerCase(), des2, ing2, ins2);
+		Recipes r3 = new Recipes (name3.toLowerCase(), des3, ing3, ins3);
+		recipe.add(r1);
+		recipe.add(r2);
+		recipe.add(r3);
     	writeJsonRecipe(name1, des1, ing1, ins1 );
     	writeJsonRecipe(name2, des2, ing2, ins2);
     	writeJsonRecipe(name3, des3, ing3, ins3);
@@ -67,6 +74,7 @@ public class RecipeBook {
 		mainMenu();
 	}
 	
+	//display the main menu
 	private static void mainMenu() throws Exception {
 		Scanner sc = new Scanner(System.in);
 		int user_input;
@@ -74,8 +82,8 @@ public class RecipeBook {
 			System.out.println("\n\n          Main Window");
 			System.out.println("====================================");
 			System.out.println("Choose one of the following options:\n");
-			System.out.println("(1) Recipe Creation.\n");
-			System.out.println("(2) Recipe Retrieval.\n");
+			System.out.println("(1) Recipe Creation\n");
+			System.out.println("(2) Recipe Retrieval\n");
 			System.out.println("(3) Quit\n");
 			System.out.print("Enter Your Choice: ");
 
@@ -83,14 +91,15 @@ public class RecipeBook {
 
 			switch (user_input) {
 
+			//if the user enters 1, call addRecipes for recipe creation
 			case 1:
 				addRecipes();
 				break;
-
+			//if the user enters 2, call searchRecipes for recipe retrieval
 			case 2:
 				searchRecipes();
 				break;
-
+			//if the user enters 3, quit the program
 			case 3:
 				try (FileWriter file = new FileWriter("RecipeBook")) {
 		            file.write(book.toJSONString());
@@ -108,9 +117,9 @@ public class RecipeBook {
 		} while (user_input != 3);
 		sc.nextLine();
 		sc.close();
-
 	}
 
+	//recipe creation
 	private static void addRecipes() throws Exception {
 		Scanner s = new Scanner(System.in);
 		String name, description, ingredientList, instructions;
@@ -119,6 +128,8 @@ public class RecipeBook {
 		for (int i = 0; i < lineOne.length(); i++) {
 			System.out.print("=");
 		}
+
+		//asking the user to enter their own recipes
 		System.out.print("\nName: ");
 		name = s.nextLine();
 		System.out.print("Description: ");
@@ -130,6 +141,8 @@ public class RecipeBook {
 		for (int i = 0; i < lineOne.length(); i++) {
 			System.out.print("-");
 		}
+
+		//adding the new recipe to json file
 		Recipes addingRecipess = new Recipes(name.toLowerCase(), description, ingredientList, instructions);
 		recipe.add(addingRecipess);
 		writeJsonRecipe(name.toLowerCase(), description, ingredientList, instructions);
@@ -140,8 +153,8 @@ public class RecipeBook {
 		}
 	}
 
+	//recipe retrieval
 	private static void searchRecipes() throws Exception {
-
 		Scanner s = new Scanner(System.in);
 		int userChoice;
 		String lineTwo = "\nMain Window --> Search for Recipes: (Choose one of the following options)";
@@ -149,6 +162,8 @@ public class RecipeBook {
 		for (int i = 0; i < lineTwo.length(); i++) {
 			System.out.print("=");
 		}
+
+		//the user can choose whether to search by recipe names or to display all names
 		System.out.print("\n(1) Search by Recipe Name ");
 		System.out.print("\n(2) Display All Recipe Names ");
 		System.out.println();
@@ -181,7 +196,6 @@ public class RecipeBook {
 			name.toLowerCase();
 			for (Recipes c : recipe) {
 				if (name.equals(c.getRecipeName()) || (c.getRecipeName().contains(name))) {
-
 					System.out.print(String.format("%-3s%-26s\n", c.getRecipeID() + 1, "|" + c.getRecipeName()));
 				}
 
@@ -190,10 +204,12 @@ public class RecipeBook {
 			for (int i = 0; i < 30; i++) {
 				System.out.print("-");
 			}
+
+			//after the user searches 1 recipe by name will be prompt with the following options
 			System.out.println("\nChoose one of these options: ");
-			System.out.print("\n(1) Display All");
+			System.out.print("\n(1) Display All Recipe Names");
 			System.out.print("\n(2) Explore Recipe");
-			System.out.print("\n(3) Back to main Window");
+			System.out.print("\n(3) Back to Main Window");
 			System.out.println();
 			System.out.print("\nEnter Your Choice: ");
 			selection = s.nextInt();
@@ -201,31 +217,31 @@ public class RecipeBook {
 
 			if (selection == 1) { // display all recipe names
 				displayRecipes();
-				
 			}
 
 			if (selection == 2) { // explore this specific recipe
 				int recipeID;
+				//calling the exploreRecipe function for recipe exploration
 				for (Recipes c : recipe) {
 					if (name.equals(c.getRecipeName()) || (c.getRecipeName().contains(name))) {
 						recipeID = c.getRecipeID();
 						exploreRecipe(recipeID);
 					}
-
 				}
 			}
 
-			if (selection == 3) {
+			if (selection == 3) { //going back to the main window
 				mainMenu();
 			}
 
 		}
 
-		if (userChoice == 2) { // Display all recipe names
+		if (userChoice == 2) { // Display all recipe names, will be brought back to the main window after
 			displayRecipes();
 		}
 	}
 
+	//specific recipe exploration
 	private static void exploreRecipe(int recipeID) throws Exception {
 		Scanner sc = new Scanner(System.in);
 		String userChoice;
@@ -241,6 +257,8 @@ public class RecipeBook {
 			System.out.print("-");
 		}
 		System.out.println();
+
+		//display all information about the recipe
 		for (Recipes c : recipe) {
 			if (c.getRecipeID() == recipeID) {
 				System.out.print(
@@ -252,15 +270,15 @@ public class RecipeBook {
 		for (int i = 0; i < 150; i++) {
 			System.out.print("-");
 		}
-
+		//asking user if they want to explore instructions step-by-step
 		System.out.println("\nWould you like step-by-step instructions for this recipe? (yes/no): ");
 		userChoice = sc.next();
 		
-		if (userChoice.equals("yes")) {
+		if (userChoice.equals("yes")) { //bring to displayInstructions
 			displayInstructions(recipeID);
 		}
 
-		if (userChoice.equals("no")) {
+		if (userChoice.equals("no")) { //back to the main window
 			mainMenu();
 		}
 
@@ -274,6 +292,8 @@ public class RecipeBook {
 		}
 		System.out.println();
 		System.out.println();
+
+		//iterating over json file to display instructions of the chosen recipe step-by-step
 		for (Recipes c : recipe) {
 			if (c.getRecipeID() == recipeID) {
 //				System.out.println(String.format("%-3s%-26s%-45s\n", c.getRecipeID() + 1, "|" + c.getRecipeName(),
@@ -285,12 +305,11 @@ public class RecipeBook {
 	        	while (iterator.hasNext() && System.in.read() != -1) {
 	                System.out.println(iterator.next());
 	            }
-				
 			}
-			
 		}
 	}
 
+	//display the recipe
 	private static void displayRecipes() {
 		String lineTwo_aa = "\nMain Window --> Display All Recipe Names";
 		System.out.println(lineTwo_aa);
@@ -309,11 +328,10 @@ public class RecipeBook {
 		for (int i = 0; i < 30; i++) {
 			System.out.print("-");
 		}
-
 	}
 	
+	//writing recipes to json file
 	private static void writeJsonRecipe(String name, String description, String ingredients, String instructions) throws Exception {
-		
 		JSONObject recipe = new JSONObject();
 		recipe.put("name", name);
 		recipe.put("description", description);
@@ -341,6 +359,7 @@ public class RecipeBook {
 		
 	}
 	
+	//viewing json file
 	private static void viewJsonRecipes() throws IOException, ParseException {
 		JSONParser parser = new JSONParser();
 
