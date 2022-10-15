@@ -48,7 +48,7 @@ public class RecipeBook {
     			+ "Cook it for 5 minutes.;"
     			+ "Stir in the parmesan cheese and let it bubble for about a minute.;"
     			+ "Add the shrimp and cook for 5-6 minutes.;"
-    			+ "Season to taste and toss with the pasta, Stir well together and add any seasoning, if you wish. Serve immediately.";
+    			+ "Season to taste and toss with the pasta, stir well together and add any seasoning, if you wish. Serve immediately.";
     	
     	String name2 = "Sauteed Spinach";
     	String des2 = "This spinach recipe is one of the best ways to cook spinach.";
@@ -69,7 +69,7 @@ public class RecipeBook {
     			+ "Add Balsamic glaze or honey for drizzling on each slice.;"
     			+ "Optional: add fresh herb garnish or basil.;"
     			+ "Arrange on a platter and serve cold.";
-				
+
 		Recipes r1 = new Recipes(name1.toLowerCase(),des1,ing1,ins1);
 		Recipes r2 = new Recipes (name2.toLowerCase(), des2, ing2, ins2);
 		Recipes r3 = new Recipes (name3.toLowerCase(), des3, ing3, ins3);
