@@ -79,9 +79,9 @@ public class RecipeBook {
 		Scanner sc = new Scanner(System.in);
 		int user_input;
 		do {
-			System.out.println("\n\n          Main Window");
-			System.out.println("====================================");
-			System.out.println("Choose one of the following options:\n");
+			System.out.println("\n\t\t\tMain Window");
+			for (int i = 0; i < 66; i++) { System.out.print("="); }
+			System.out.println("\nChoose one of the following options:\n");
 			System.out.println("(1) Recipe Creation\n");
 			System.out.println("(2) Recipe Retrieval\n");
 			System.out.println("(3) Quit\n");
@@ -251,22 +251,30 @@ public class RecipeBook {
 			System.out.print("=");
 		}
 		System.out.println();
-		System.out.printf("%-4s%-25s%-30s%-40s%-45s\n", "ID |", "Name", "|Description ", "|Ingredients",
-				"|Instructions");
+		
 		for (int i = 0; i < 150; i++) {
 			System.out.print("-");
 		}
 		System.out.println();
-
-		//display all information about the recipe
+		
 		for (Recipes c : recipe) {
 			if (c.getRecipeID() == recipeID) {
-				System.out.print(
-						String.format("%-3s%-26s%-30s%-40s%-45s\n", c.getRecipeID() + 1, "|" + c.getRecipeName(),
-								"|" + c.getDescription(), "|" + c.getIngredientList(), "|" + c.getInstructions()));
+				int r_ID = c.getRecipeID() + 1;
+				String rID = "" + r_ID;
+				String[] instructionsFilter = c.getInstructions().split(";");
+	        		System.out.println(
+							String.format("ID: " + rID + "\nName: " + c.getRecipeName() + "\nDescription: " + c.getDescription() + "\nIngredients: "  
+					+ c.getIngredientList() + "\nInstructions: " ));
+	        		for(int i = 0; i < instructionsFilter.length; i++) {
+						System.out.println(instructionsFilter[i]);
+					}
 			}
-
 		}
+		
+		
+		
+		
+		
 		for (int i = 0; i < 150; i++) {
 			System.out.print("-");
 		}
@@ -296,8 +304,7 @@ public class RecipeBook {
 		//iterating over json file to display instructions of the chosen recipe step-by-step
 		for (Recipes c : recipe) {
 			if (c.getRecipeID() == recipeID) {
-//				System.out.println(String.format("%-3s%-26s%-45s\n", c.getRecipeID() + 1, "|" + c.getRecipeName(),
-//						"|" + c.getInstructions()));
+
 				JSONObject instruct = (JSONObject) book.get(c.getRecipeID());
 				JSONArray instructs = (JSONArray) instruct.get("instructions");
 	        	Iterator<JSONObject> iterator = instructs.iterator(); 
@@ -351,12 +358,7 @@ public class RecipeBook {
 		recipe.put("instructions", instructionsArray);	
 		
 		book.add(recipe);
-//		try (FileWriter file = new FileWriter("RecipeBook")) {
-//            file.write(book.toJSONString());
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-		
+	
 	}
 	
 	//viewing json file
@@ -370,29 +372,6 @@ public class RecipeBook {
 			while (iterator.hasNext()) {
 			System.out.println(iterator.next());
 		}
-
-		//            String name = (String) recipe.get("name");
-		//            System.out.println("Name: " + name);
-		//            System.out.println("");
-		//
-		//            String description = (String) recipe.get("description");
-		//            System.out.println("Description: " + description);
-		//            System.out.println("");
-		//
-		//            JSONArray ingredients = (JSONArray) recipe.get("ingredients");
-		//            Iterator<String> iterator = ingredients.iterator();
-		//            System.out.println("Ingredients:");
-		//            while (iterator.hasNext()) {
-		//                System.out.println(iterator.next());
-		//            }
-		//            System.out.println("");
-		//            
-		//            JSONArray instructions = (JSONArray) recipe.get("instructions");
-		//            Iterator<String> iteratorTwo = instructions.iterator();
-		//            System.out.println("Instructions:");
-		//            while (iteratorTwo.hasNext()) {
-		//                System.out.println(iteratorTwo.next());
-		//            }
 
 		} catch (IOException e) {
 		    e.printStackTrace();
