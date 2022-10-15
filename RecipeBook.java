@@ -43,24 +43,33 @@ public class RecipeBook {
     	String des1 = "This shrimp Alfredo pasta recipe is the perfect fast weeknight dinner!";
     	String ing1 = "Fettuccine pasta, Shrimp, Butter, Cream cheese, Heavy cream, Chicken broth, Garlic, Parmesan cheese";
     	String ins1 = "Fill a large pot with water, add salt and wait for it to boil. Add the dried pasta. Stir until the water returns to a boil. "
-    			+ "Have it ready on the side; Add the butter, cream cheese, heavy cream, chicken broth, and garlic to a skillet over medium heat. "
-    			+ "Cook it for 5 minutes; Stir in the parmesan cheese and let it bubble for about a minute; Add the shrimp and cook for 5-6 minutes;"
-    			+ "Season to taste and toss with the pasta, Stir well together and add any seasoning, if you wish. Serve immediately";
+    			+ "Have it ready on the side.;"
+    			+ "Add the butter, cream cheese, heavy cream, chicken broth, and garlic to a skillet over medium heat. "
+    			+ "Cook it for 5 minutes.;"
+    			+ "Stir in the parmesan cheese and let it bubble for about a minute.;"
+    			+ "Add the shrimp and cook for 5-6 minutes.;"
+    			+ "Season to taste and toss with the pasta, Stir well together and add any seasoning, if you wish. Serve immediately.";
     	
     	String name2 = "Sauteed Spinach";
     	String des2 = "This spinach recipe is one of the best ways to cook spinach.";
     	String ing2 = "Spinach, Extra virgin olive oil, Sliced garlic, Salt";
-    	String ins2 = "Clean and prep the spinach; Heat 2 tablespoons olive oil in a large skillet on medium high heat. "
-    			+ "Add the garlic and saute for about 30 seconds; Add the spinach to the pan and cook. Cover the pan and cook for 1 minute. "
-    			+ "Uncover and turn the spinach over again. Repeat; Remove from heat and drain the excess liquid. "
+    	String ins2 = "Clean and prep the spinach.;"
+    			+ "Heat 2 tablespoons olive oil in a large skillet on medium high heat. "
+    			+ "Add the garlic and saute for about 30 seconds.;"
+    			+ "Add the spinach to the pan and cook. Cover the pan and cook for 1 minute. "
+    			+ "Uncover and turn the spinach over again. Repeat.;"
+    			+ "Remove from heat and drain the excess liquid. "
     			+ "Add a little more olive oil, if you wish. Then, sprinkle with salt to taste. Serve immediately.";
     	
     	String name3 = "Prosciutto And Melon";
     	String des3 = "This appetizer is one of the easiest, amazingly delicious summer dish!";
     	String ing3 = "One cantaloupe, Prosciutto (Italian dry-cured ham), Balsamic glaze or quality honey for drizzling, Optional fresh herb garnish";
-    	String ins3 = "Peel the melon, cut in half lengthwise, remove seeds, and slice it; Wrap each piece of cantaloupe with a slice of prosciutto;"
-    			+ "Add Balsamic glaze or honey for drizzling on each slice; Optional: add fresh herb garnish or basil; 5. Arrange on a platter and serve cold";
-
+    	String ins3 = "Peel the melon, cut in half lengthwise, remove seeds, and slice it.;"
+    			+ "Wrap each piece of cantaloupe with a slice of prosciutto.;"
+    			+ "Add Balsamic glaze or honey for drizzling on each slice.;"
+    			+ "Optional: add fresh herb garnish or basil.;"
+    			+ "Arrange on a platter and serve cold.";
+				
 		Recipes r1 = new Recipes(name1.toLowerCase(),des1,ing1,ins1);
 		Recipes r2 = new Recipes (name2.toLowerCase(), des2, ing2, ins2);
 		Recipes r3 = new Recipes (name3.toLowerCase(), des3, ing3, ins3);
